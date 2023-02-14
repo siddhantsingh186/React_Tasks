@@ -3,16 +3,23 @@ import './Products.css'
 import Card from 'react-bootstrap/Card';
 import { productData } from './productData';
 function Getproducts () {
+    
   return (
     <div>
       <h1>Fake Store Products</h1>
         <div className="products">
-            {productData.map((product) => {
+            {productData['products'].map((product) => {
                 return (
-                    <Card style={{ width: '18rem' }}>
-                        <Card.Img variant="top" src={product.image} />
+                    <Card style={{ width: '18rem' }} key = {product.id}>
+                        <Card.Img variant="top" src={product.images[0]} />
                         <Card.Body>
                             <Card.Title>{product.title}</Card.Title>
+                            <Card.Text>
+                                Brand - {product.brand}
+                            </Card.Text>
+                            <Card.Text>
+                                Category - {product.category}
+                            </Card.Text>
                             <Card.Text>
                                 {product.description}
                             </Card.Text>
@@ -20,13 +27,12 @@ function Getproducts () {
                                 {product.price}
                             </Card.Text>
                             <Card.Text>
-                                {product.rating.rate}
+                                {product.rating}
                             </Card.Text>
                         </Card.Body>
                     </Card>
-                );
-            })
-            }   
+                )
+            })}
         </div>   
     </div>
   );
