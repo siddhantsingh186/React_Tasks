@@ -1,0 +1,12 @@
+h1{
+    display: flex;
+    justify-content: center;
+}
+
+.products{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 25px;
+    row-gap: 25px;
+}
