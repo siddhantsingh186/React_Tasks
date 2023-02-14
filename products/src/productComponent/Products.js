@@ -1,0 +1,39 @@
+import React from 'react';
+import './Products.css'
+import Card from 'react-bootstrap/Card';
+import { productData } from './productData';
+function ProductList () {
+  return (
+    <div>
+      <h1>Fake Store Products</h1>
+        <div className="products">
+            {productData['products'].map(({id, thumbnail, title, brand, category, description, price, rating}) => {
+                return (
+                    <Card style={{ width: '18rem' }} key = {id}>
+                        <Card.Img variant="top" src={thumbnail} />
+                        <Card.Body>
+                            <Card.Title>{title}</Card.Title>
+                            <Card.Text>
+                                Brand - {brand}
+                            </Card.Text>
+                            <Card.Text>
+                                Category - {category}
+                            </Card.Text>
+                            <Card.Text>
+                                {description}
+                            </Card.Text>
+                            <Card.Text>
+                                Price - {price}
+                            </Card.Text>
+                            <Card.Text>
+                                Rating - {rating}
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                )
+            })}
+        </div>   
+    </div>
+  );
+}
+export default ProductList;
