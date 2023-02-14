@@ -24,10 +24,10 @@ function ProductList () {
                                 {description}
                             </Card.Text>
                             <Card.Text>
-                                {price}
+                                Price - {price}
                             </Card.Text>
                             <Card.Text>
-                                {rating}
+                                Rating - {rating}
                             </Card.Text>
                         </Card.Body>
                     </Card>
