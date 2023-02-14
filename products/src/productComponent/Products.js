@@ -2,32 +2,32 @@ import React from 'react';
 import './Products.css'
 import Card from 'react-bootstrap/Card';
 import { productData } from './productData';
-function Getproducts () {
+function ProductList () {
     
   return (
     <div>
       <h1>Fake Store Products</h1>
         <div className="products">
-            {productData['products'].map((product) => {
+            {productData['products'].map(({id, images, title, brand, category, description, price, rating}) => {
                 return (
-                    <Card style={{ width: '18rem' }} key = {product.id}>
-                        <Card.Img variant="top" src={product.images[0]} />
+                    <Card style={{ width: '18rem' }} key = {id}>
+                        <Card.Img variant="top" src={images[0]} />
                         <Card.Body>
-                            <Card.Title>{product.title}</Card.Title>
+                            <Card.Title>{title}</Card.Title>
                             <Card.Text>
-                                Brand - {product.brand}
+                                Brand - {brand}
                             </Card.Text>
                             <Card.Text>
-                                Category - {product.category}
+                                Category - {category}
                             </Card.Text>
                             <Card.Text>
-                                {product.description}
+                                {description}
                             </Card.Text>
                             <Card.Text>
-                                {product.price}
+                                {price}
                             </Card.Text>
                             <Card.Text>
-                                {product.rating}
+                                {rating}
                             </Card.Text>
                         </Card.Body>
                     </Card>
@@ -37,4 +37,4 @@ function Getproducts () {
     </div>
   );
 }
-export default Getproducts;
+export default ProductList;

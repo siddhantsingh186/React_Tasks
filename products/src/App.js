@@ -1,9 +1,9 @@
 import './App.css';
-import Getproducts from './productComponent/Products';
+import ProductList from './productComponent/Products';
 function App() {
   return (
     <>
-      <Getproducts />
+      <ProductList />
     </>
   );
 }
