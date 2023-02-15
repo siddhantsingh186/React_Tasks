@@ -1,39 +1,50 @@
 import React from 'react';
 import './Products.css'
-import Card from 'react-bootstrap/Card';
-import { productData } from './productData';
+import GetProductList from '../APIcalls/GetProductList';
+import { useState } from 'react';
+import SearchProducts from '../SearchFilter/SearchProducts';
+import DisplayCard from '../DisplayComponent/DisplayComponent';
 function ProductList () {
-  return (
-    <div>
-      <h1>Fake Store Products</h1>
-        <div className="products">
-            {productData['products'].map(({id, thumbnail, title, brand, category, description, price, rating}) => {
-                return (
-                    <Card style={{ width: '18rem' }} key = {id}>
-                        <Card.Img variant="top" src={thumbnail} />
-                        <Card.Body>
-                            <Card.Title>{title}</Card.Title>
-                            <Card.Text>
-                                Brand - {brand}
-                            </Card.Text>
-                            <Card.Text>
-                                Category - {category}
-                            </Card.Text>
-                            <Card.Text>
-                                {description}
-                            </Card.Text>
-                            <Card.Text>
-                                Price - {price}
-                            </Card.Text>
-                            <Card.Text>
-                                Rating - {rating}
-                            </Card.Text>
-                        </Card.Body>
-                    </Card>
-                )
-            })}
-        </div>   
-    </div>
-  );
+    const {loading, productsList} = GetProductList();
+    const [filteredProducts, setFilteredProducts] = useState([]);
+    if(!productsList){
+        alert("No products found");
+        return null;
+    }
+
+    if (loading) {
+        return <div className="loader"></div>
+    }
+    return (
+        <div>
+        <h1>Fake Store Products</h1>
+        <SearchProducts products = {productsList} setFilteredProducts={setFilteredProducts} />
+            <div className="products">
+                {filteredProducts.length > 0 ? (filteredProducts.map(({id, thumbnail, title, brand, description, category, price, rating}) => (
+                    <DisplayCard 
+                        key={id} 
+                        id={id} 
+                        thumbnail={thumbnail} 
+                        title={title} 
+                        brand={brand} 
+                        description={description} 
+                        category={category} 
+                        price={price} 
+                        rating={rating} />
+                ))) : (productsList['products'].map(({id, thumbnail, title, brand, description, category, price, rating}) => (
+                    <DisplayCard 
+                        key={id} 
+                        id={id} 
+                        thumbnail={thumbnail} 
+                        title={title} 
+                        brand={brand} 
+                        description={description} 
+                        category={category} 
+                        price={price} 
+                        rating={rating} />
+                )))}
+            </div>   
+        </div>
+    );
 }
 export default ProductList;

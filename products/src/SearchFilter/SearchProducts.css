@@ -1,0 +1,18 @@
+.SearchBox{
+    display: flex;
+    margin-top: 21px;
+    margin-bottom: 25px;
+    justify-content: center;
+}
+
+.SearchBox input{
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    width: 500px;
+    border-radius: 9px;
+    border-color: snow;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
