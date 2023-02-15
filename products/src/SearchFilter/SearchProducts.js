@@ -1,23 +1,15 @@
-import { useState } from "react";
+
 import "./SearchProducts.css";
-const SearchProducts = ({products, setFilteredProducts}) => {
-    const [searchTerm, setSearchTerm] = useState("");
+const SearchProducts = ({setSearch}) => {
 
     const handleSearch = (event) => {
         const searchTextInput = event.target.value.toLowerCase();
-        setSearchTerm(searchTextInput);
-
-        const filteredProducts = products['products'].filter((product) => {
-            return product.title.toLowerCase().includes(searchTextInput);
-        });
-
-        setFilteredProducts(filteredProducts);
-        
+        setSearch(searchTextInput);    
     }
 
     return (
         <div className="SearchBox">
-            <input type="text" placeholder="Search with title..." value={searchTerm} onChange={handleSearch} />
+            <input type="text" placeholder="Search with title..." onChange={handleSearch} />
         </div>
     );
 };

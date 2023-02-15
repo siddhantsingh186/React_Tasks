@@ -1,9 +1,9 @@
 import React from 'react'
 import Card from 'react-bootstrap/Card'
 
-function DisplayCard ({id, thumbnail, title, brand, description, category, price, rating}){
+function DisplayCard ({product: {title, description, thumbnail, brand, category, price, rating}}){
     return(
-        <Card key={id} className="product" style={{ width: '18rem' }}>
+        <Card className="product" style={{ width: '18rem' }}>
         <Card.Img variant="top" src={thumbnail} />
             <Card.Body>
             <Card.Title>{title}</Card.Title>

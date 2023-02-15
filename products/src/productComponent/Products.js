@@ -6,7 +6,7 @@ import SearchProducts from '../SearchFilter/SearchProducts';
 import DisplayCard from '../DisplayComponent/DisplayComponent';
 function ProductList () {
     const {loading, productsList} = GetProductList();
-    const [filteredProducts, setFilteredProducts] = useState([]);
+    const [search, setSearch] = useState("");
     if(!productsList){
         alert("No products found");
         return null;
@@ -15,34 +15,18 @@ function ProductList () {
     if (loading) {
         return <div className="loader"></div>
     }
+
     return (
         <div>
         <h1>Fake Store Products</h1>
-        <SearchProducts products = {productsList} setFilteredProducts={setFilteredProducts} />
+        <SearchProducts setSearch={setSearch}/>
             <div className="products">
-                {filteredProducts.length > 0 ? (filteredProducts.map(({id, thumbnail, title, brand, description, category, price, rating}) => (
-                    <DisplayCard 
-                        key={id} 
-                        id={id} 
-                        thumbnail={thumbnail} 
-                        title={title} 
-                        brand={brand} 
-                        description={description} 
-                        category={category} 
-                        price={price} 
-                        rating={rating} />
-                ))) : (productsList['products'].map(({id, thumbnail, title, brand, description, category, price, rating}) => (
-                    <DisplayCard 
-                        key={id} 
-                        id={id} 
-                        thumbnail={thumbnail} 
-                        title={title} 
-                        brand={brand} 
-                        description={description} 
-                        category={category} 
-                        price={price} 
-                        rating={rating} />
-                )))}
+                {productsList['products'].map((product, index) => {
+                    if(product.title.toLowerCase().includes(search)){
+                        return <DisplayCard product = {product} key={index}/>
+                    }
+                    return null;
+                })}
             </div>   
         </div>
     );
